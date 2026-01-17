@@ -10,8 +10,7 @@ namespace FightGameMS.Classes.Interfaces
 {
     public interface IAnimation
     {
-        double AttackElapsedMs { get; set; }
-        int AttackFrameIndex { get; set; }
+      
         void Animate(Hero hero, double dtMs);
         List<Image> GetFrames(Direction direction);
         void RestFrames();

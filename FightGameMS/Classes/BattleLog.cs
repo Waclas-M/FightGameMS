@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FightGameMS.Classes.Enums
+namespace FightGameMS.Classes
 {
-    public enum Status
+    public class BattleLog
     {
-        SetUp,
-        Run,
-        Ended
+
+        public BattleLog(Guid gameId) {
+        
+        }
     }
 }

@@ -15,14 +15,18 @@ namespace FightGameMS.Classes
     public class GameSession
     {
 
+
+        public bool Debug { get; } = true;
+
+        public Guid Id { get; set; }
         private Player Player1 { get; }
         private Player Player2 { get; }
 
         public Hero Hero_P1 { get; set; }
         public Hero Hero_P2 { get; set; }
-
-
-        private AttackResolver AttackHitResolver { get; set; }
+        public Status GameStatus { get; set; }
+        private int Winner {get;set;}
+        private AttackResolver AttackHitResolver { get; set; } = new AttackResolver();
 
 
         public event EventHandler<DamagePlayerEvent>? DamagePlayer;
@@ -47,6 +51,7 @@ namespace FightGameMS.Classes
 
         public GameSession(Player player1, Player player2)
         {
+            Id = new Guid();
             Player1 = player1;
             Player2 = player2;
             Player1.PlayerID = 1;
@@ -76,14 +81,8 @@ namespace FightGameMS.Classes
             Hero_P2 = Player2.hero;
             Player1.SubscribeToGameEvents(this);
             Player2.SubscribeToGameEvents(this);
-            Hero_P2.X = 400;
-
-            AttackHitResolver = new AttackResolver();
-
-
-
-            Action(ActionType.Move, 1, 0);
-            Action(ActionType.Move, 1, 0);
+            Hero_P2.X = 800;
+            
             Update(16);
             
 
@@ -111,7 +110,7 @@ namespace FightGameMS.Classes
             if (Hero_P1.IsStaying) OnStopMovePlayer(Hero_P1.HeroID, dtMs);
             if (Hero_P2.IsStaying) OnStopMovePlayer(Hero_P2.HeroID, dtMs);
 
-            
+            EndGame();
 
             // Sprawdzenie czy udrzenie trafiło
 
@@ -140,6 +139,7 @@ namespace FightGameMS.Classes
                     if (hero.IsAttacking == true) return;
                     hero.IsAttacking = true;
                     hero.AttackAnimation.RestFrames();
+                    hero.AttackDamageApplied = false;
                     //Debug.WriteLine("Atak odebrany w Action");
                     break;
                 case ActionType.Move:
@@ -166,7 +166,21 @@ namespace FightGameMS.Classes
 
             }
 
+        }
 
+        private void EndGame()
+        {
+            if (Hero_P1.Hp.CurrentHealth == 0 && Hero_P2.Hp.CurrentHealth == 0)
+            { Winner = 0; GameStatus = Status.Ended; }
+
+            if (Hero_P1.Hp.CurrentHealth == 0) { Winner = 1; GameStatus = Status.Ended; }
+
+            if (Hero_P2.Hp.CurrentHealth == 0) 
+            {
+                Winner = 2;
+                GameStatus = Status.Ended;
+            }
+            
 
         }
     }

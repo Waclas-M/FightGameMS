@@ -24,8 +24,8 @@ namespace FightGameMS.Classes
             if (!attacker.IsAttacking) return false;
             if (attacker.AttackDamageApplied) return false;
 
-            Debug.WriteLine("W Cheack Hit" + attacker.AttackAnimation.AttackElapsedMs);
-            if (attacker.AttackAnimation.AttackElapsedMs < HIT_START_MS || attacker.AttackAnimation.AttackElapsedMs > HIT_END_MS) return false;
+            Debug.WriteLine("W Cheack Hit" + attacker.AttackAnimation.ElapsedMs);
+            if (attacker.AttackAnimation.ElapsedMs < HIT_START_MS || attacker.AttackAnimation.ElapsedMs > HIT_END_MS) return false;
 
             attacker.AttackDamageApplied = true;
             Rectangle atk = HtiBoxHelper.GetAttackBox(attacker);

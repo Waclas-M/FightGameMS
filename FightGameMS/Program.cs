@@ -1,4 +1,5 @@
 using FightGameMS.Classes;
+using FightGameMS.Classes.Helpers;
 using FightGameMS.Forms;
 using FightGameMS.Infrastructure.Repositories;
 using System.Diagnostics;
@@ -16,10 +17,17 @@ namespace FightGameMS
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
 
-            ApplicationConfiguration.Initialize();
-            
 
-            JsonHeroRepository jsonHeroRepository = new JsonHeroRepository("C:\\Users\\wecla\\source\\repos\\FightGameMS\\FightGameMS\\infrastructure\\Data\\Heros.json");
+
+
+
+
+
+            ApplicationConfiguration.Initialize();
+
+           
+
+            JsonHeroRepository jsonHeroRepository = new JsonHeroRepository(ActionImageHelper.DataRoot + "//Heros.json");
             List<HeroTemplate> Heros = jsonHeroRepository.GetAll().ToList();
             Heros.ForEach(hero =>
             {
@@ -37,6 +45,7 @@ namespace FightGameMS
             player1.SelectedHeroTemplate = Heros.Find(x => x.ClassName == Player1Selected);
             player2.SelectedHeroTemplate = Heros.Find(x => x.ClassName == Player2Selected);
             Debug.WriteLine(player1.SelectedHeroTemplate);
+            
 
             GameSession gameSession = new GameSession(player1,player2);
             gameSession.SetUp();

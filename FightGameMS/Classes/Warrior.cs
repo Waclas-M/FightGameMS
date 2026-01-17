@@ -1,5 +1,6 @@
 ﻿using FightGameMS.Classes.Abstracts;
 using FightGameMS.Classes.Animations;
+using FightGameMS.Classes.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,9 @@ namespace FightGameMS.Classes
         {
             Template = template;
             IsAlive = true;
-            AttackAnimation = new CloseAttackAnimation(Template.ClassName);
-            MoveAnimation = new MoveAnimation(Template.ClassName);
-            IdleAnimation = new IdleAnimation(Template.ClassName);
+            AttackAnimation = new CloseAttackAnimation(Template.ClassName,AnimationsType.ATTACK,600);
+            MoveAnimation = new MoveAnimation(Template.ClassName,AnimationsType.WALK,600);
+            IdleAnimation = new IdleAnimation(Template.ClassName,AnimationsType.IDLE,700);
             
         }
 

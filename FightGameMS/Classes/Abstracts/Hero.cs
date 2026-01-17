@@ -17,7 +17,7 @@ namespace FightGameMS.Classes.Abstracts
         public string ClassName { get; set; }
         public string Name { get; set; }
 
-        public Health Hp { get; set; }
+        public Health Hp { get; private set; }
 
         public int AttackDamage { get; set; }
         public int AttackRange { get; set; }
@@ -28,7 +28,7 @@ namespace FightGameMS.Classes.Abstracts
         public int SpeedMs { get; set; } = 200;
 
         public int X { get; set; }
-        public int Y { get; set; }
+        public int Y { get; set; } = 300;
 
         public string PlayerMovmentsFolder { get; set; }
 
@@ -41,13 +41,15 @@ namespace FightGameMS.Classes.Abstracts
 
         public bool IsStaying { get; set; } = true;
 
+        public bool IsAlive { get; private set; } = true;
+
         public bool AttackDamageApplied { get; set; }
 
         // animations
 
-        public IAnimation AttackAnimation { get; set; }
-        public IAnimation MoveAnimation { get; set; }
-        public IAnimation IdleAnimation { get; set; }
+        public Animation AttackAnimation { get; set; }
+        public Animation MoveAnimation { get; set; }
+        public Animation IdleAnimation { get; set; }
 
 
         public Image HeroCurrentImage { get; set; }
@@ -70,6 +72,8 @@ namespace FightGameMS.Classes.Abstracts
             if (e.TargetID == HeroID)
             {
                 Hp -= e.Damage;
+                if (Hp.CurrentHealth <= 0) IsAlive = false; 
+                Debug.WriteLine($"\nMoje zdrowie {Hp.CurrentHealth} \n");
             }
         }
 

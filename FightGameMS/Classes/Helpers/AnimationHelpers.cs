@@ -8,8 +8,13 @@ namespace FightGameMS.Classes.Helpers
 {
     public class ActionImageHelper
     {
-        public static readonly string DataRoot =
-        @"C:\Users\wecla\source\repos\GreenFightForms\GreenFightForms\infrastructure\Data";
+        //public static readonly string DataRoot =
+        //@"C:\Users\wecla\source\repos\GreenFightForms\GreenFightForms\infrastructure\Data";
+
+        public static readonly string DataRoot = Path.GetFullPath(
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\infrastructure\Data")
+        );
+
         public static List<Image> LoadFrames(string folderPath)
         {
             if (!Directory.Exists(folderPath))

@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace FightGameMS.Classes.Enums
 {
-    public enum Status
+    public enum AnimationsType
     {
-        SetUp,
-        Run,
-        Ended
+        WALK,
+        IDLE,
+        ATTACK
+
+
     }
 }
