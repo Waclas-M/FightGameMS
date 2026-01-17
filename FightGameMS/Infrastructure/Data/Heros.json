@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "hero1",
+    "ClassName": "Warrior",
+    "Description": "A brave warrior with high attack damage.",
+    "AttackDamage": 25,
+    "MaxHealth": 150,
+    "AttackRange": 1,
+    "HitBoxWidth": 60,
+    "HitBoxHeight": 200,
+    "SpeedMs": 200,
+    "PlayerMovmentsFolder": "C:\\Users\\wecla\\source\\repos\\FightGameMS\\FightGameMS\\infrastructure\\Data\\player"
+  },
+  {
+    "Name": "hero2",
+    "ClassName": "Archer",
+    "Description": "A brave Archer with high attack range.",
+    "AttackDamage": 25,
+    "MaxHealth": 150,
+    "AttackRange": 4,
+    "HitBoxWidth": 60,
+    "HitBoxHeight": 200,
+    "SpeedMs": 200,
+    "PlayerMovmentsFolder": "C:\\Users\\wecla\\source\\repos\\FightGameMS\\FightGameMS\\infrastructure\\Data\\player"
+  }
+]
