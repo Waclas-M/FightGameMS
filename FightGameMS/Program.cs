@@ -25,7 +25,7 @@ namespace FightGameMS
 
             ApplicationConfiguration.Initialize();
 
-           
+       
 
             JsonHeroRepository jsonHeroRepository = new JsonHeroRepository(ActionImageHelper.DataRoot + "//Heros.json");
             List<HeroTemplate> Heros = jsonHeroRepository.GetAll().ToList();
@@ -38,6 +38,7 @@ namespace FightGameMS
             var Player1Selected = "Warrior";
             var Player2Selected = "Warrior";
 
+            
 
             Player player1 = new Player("Marcin");
             Player player2 = new Player("Wojtek");

@@ -25,7 +25,10 @@ namespace FightGameMS.Classes
         public Hero Hero_P1 { get; set; }
         public Hero Hero_P2 { get; set; }
         public Status GameStatus { get; set; }
-        private int Winner {get;set;}
+        public int Winner {get; private set;}
+
+        private BattleLog GameLog { get; set; }
+
         private AttackResolver AttackHitResolver { get; set; } = new AttackResolver();
 
 
@@ -75,6 +78,7 @@ namespace FightGameMS.Classes
 
         public void SetUp()
         {
+            GameLog = new BattleLog(this);
             AddHeroToPlayer(Player1);
             AddHeroToPlayer(Player2);
             Hero_P1 = Player1.hero;
@@ -140,6 +144,16 @@ namespace FightGameMS.Classes
                     hero.IsAttacking = true;
                     hero.AttackAnimation.RestFrames();
                     hero.AttackDamageApplied = false;
+                    if (heroID == Hero_P1.HeroID)
+                    {
+                        GameLog.p1_attacked = false;
+                    }
+                    else
+                    {
+                        GameLog.p2_attacked = false;
+                    }
+
+
                     //Debug.WriteLine("Atak odebrany w Action");
                     break;
                 case ActionType.Move:
@@ -171,14 +185,16 @@ namespace FightGameMS.Classes
         private void EndGame()
         {
             if (Hero_P1.Hp.CurrentHealth == 0 && Hero_P2.Hp.CurrentHealth == 0)
-            { Winner = 0; GameStatus = Status.Ended; }
+            { Winner = 0; GameStatus = Status.Ended; new EndGameWindow(this).ShowDialog(); }
 
-            if (Hero_P1.Hp.CurrentHealth == 0) { Winner = 1; GameStatus = Status.Ended; }
+            if (Hero_P1.Hp.CurrentHealth == 0) { Winner = 2; GameStatus = Status.Ended;  new EndGameWindow(this).ShowDialog(); }
 
             if (Hero_P2.Hp.CurrentHealth == 0) 
             {
-                Winner = 2;
+                Winner = 1;
                 GameStatus = Status.Ended;
+
+                new EndGameWindow(this).ShowDialog();
             }
             
 

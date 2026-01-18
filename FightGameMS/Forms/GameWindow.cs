@@ -52,10 +52,10 @@ namespace FightGameMS.Forms
             double dtMs = (now - _lastTick).TotalMilliseconds;
             _lastTick = now;
 
-           
+            if (EndGame()) return;
 
             Game.Update(dtMs);
-            EndGame();
+            
             // Odświerzanie rysnuka // Wywołanie GameWindow_Paint
             Invalidate();
         }
@@ -157,12 +157,14 @@ namespace FightGameMS.Forms
 
         }
 
-        private void EndGame()
+        private bool EndGame()
         {
             if(Game.GameStatus == Status.Ended)
             {
-                this.Close();
+                _timer.Stop();
+                return true;   
             }
+            return false;
         }
 
         private void GameWindow_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
