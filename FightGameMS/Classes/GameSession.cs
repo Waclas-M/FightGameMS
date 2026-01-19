@@ -26,6 +26,7 @@ namespace FightGameMS.Classes
         public Hero Hero_P2 { get; set; }
         public Status GameStatus { get; set; }
         public int Winner {get; private set;}
+        public string WinnerName {get; private set;}
 
         private BattleLog GameLog { get; set; }
 
@@ -36,6 +37,7 @@ namespace FightGameMS.Classes
         public event EventHandler<AttackEvent>? AttackPlayer;
         public event EventHandler<MoveEvent>? MovePlayer;
         public event EventHandler<StopMoveEvent>? StopMovePlayer;
+        public event EventHandler<GameEndEvent>? GameEnd;
 
         // Onxxx pattern
         public virtual void OnDamagePlayer(int attackerId, int targetId, int dmg)
@@ -49,12 +51,12 @@ namespace FightGameMS.Classes
 
         public virtual void OnStopMovePlayer(int HeroId,double dtMs) 
             => StopMovePlayer?.Invoke(this,new StopMoveEvent(HeroId,dtMs));
-
+        public virtual void OnGameEnd(string winner,int winnerID) => GameEnd?.Invoke(this,new GameEndEvent(winner,winnerID));
 
 
         public GameSession(Player player1, Player player2)
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
             Player1 = player1;
             Player2 = player2;
             Player1.PlayerID = 1;
@@ -72,6 +74,10 @@ namespace FightGameMS.Classes
                     break;
                 case "Archer":
                     player.AddHero(new Warrior(player.SelectedHeroTemplate));
+                    break;
+                case "Samurai":
+                    player.AddHero(new Samurai(player.SelectedHeroTemplate));
+                    player.hero.Y = 250;
                     break;
             }
         }
@@ -184,16 +190,17 @@ namespace FightGameMS.Classes
 
         private void EndGame()
         {
-            if (Hero_P1.Hp.CurrentHealth == 0 && Hero_P2.Hp.CurrentHealth == 0)
-            { Winner = 0; GameStatus = Status.Ended; new EndGameWindow(this).ShowDialog(); }
+            if (Hero_P1.Hp.CurrentHealth <= 0 && Hero_P2.Hp.CurrentHealth <= 0)
+            { Winner = 0; GameStatus = Status.Ended; OnGameEnd("Remis",Winner); new EndGameWindow(this).ShowDialog(); }
 
-            if (Hero_P1.Hp.CurrentHealth == 0) { Winner = 2; GameStatus = Status.Ended;  new EndGameWindow(this).ShowDialog(); }
+            if (Hero_P1.Hp.CurrentHealth <= 0) { Winner = 2; GameStatus = Status.Ended; WinnerName = Player2.Name; OnGameEnd(WinnerName,Winner) ; new EndGameWindow(this).ShowDialog(); }
 
-            if (Hero_P2.Hp.CurrentHealth == 0) 
+            if (Hero_P2.Hp.CurrentHealth <= 0) 
             {
                 Winner = 1;
                 GameStatus = Status.Ended;
-
+                WinnerName = Player1.Name;
+                OnGameEnd(WinnerName,Winner);
                 new EndGameWindow(this).ShowDialog();
             }
             

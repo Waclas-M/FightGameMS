@@ -23,9 +23,9 @@ namespace FightGameMS.Classes
 
         public int SpeedMs { get; set; }
 
-        public string PlayerMovmentsFolder { get; set; }
+       
 
-        public HeroTemplate(string className, string name, int maxHealth, int attackDamage,int attackRange,int hitBoxWidth,int hitBoxHeight, int speedMs,string playerMovmentsFolder) {
+        public HeroTemplate(string className, string name, int maxHealth, int attackDamage,int attackRange,int hitBoxWidth,int hitBoxHeight, int speedMs) {
         
             ClassName = className;
             Name = name;
@@ -35,7 +35,7 @@ namespace FightGameMS.Classes
             HitBoxWidth = hitBoxWidth;
             HitBoxHeight = hitBoxHeight;
             SpeedMs = speedMs;
-            PlayerMovmentsFolder = playerMovmentsFolder;
+            
                 
     
         }

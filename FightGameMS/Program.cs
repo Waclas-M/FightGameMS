@@ -18,34 +18,34 @@ namespace FightGameMS
             // see https://aka.ms/applicationconfiguration.
 
 
-
-
-
+            JsonHeroRepository jsonHeroRepository = new JsonHeroRepository(ActionImageHelper.DataRoot + "//Heros.json");
+            List<HeroTemplate> Heros = jsonHeroRepository.GetAll().ToList();
 
 
             ApplicationConfiguration.Initialize();
 
+
+            using var Startingform = new StartWindow(Heros);
+            Application.Run(Startingform);
+
+
+
+
+            //string selectedHero1 = Startingform._selectedHeroPlayer1;
+            //string selectedHero2 = Startingform._selectedHeroPlayer2;
        
 
-            JsonHeroRepository jsonHeroRepository = new JsonHeroRepository(ActionImageHelper.DataRoot + "//Heros.json");
-            List<HeroTemplate> Heros = jsonHeroRepository.GetAll().ToList();
-            Heros.ForEach(hero =>
-            {
-                Debug.WriteLine("\n" + hero.ClassName + "\n");
-            });
-
             // Chwilowe zmienne zamiast ekranu wyboru
-            var Player1Selected = "Warrior";
-            var Player2Selected = "Warrior";
+            var Player1Selected = Startingform._selectedHeroPlayer1; 
+            var Player2Selected = Startingform._selectedHeroPlayer2;
 
             
 
-            Player player1 = new Player("Marcin");
-            Player player2 = new Player("Wojtek");
+            Player player1 = new Player("Player1");
+            Player player2 = new Player("Player2");
 
             player1.SelectedHeroTemplate = Heros.Find(x => x.ClassName == Player1Selected);
             player2.SelectedHeroTemplate = Heros.Find(x => x.ClassName == Player2Selected);
-            Debug.WriteLine(player1.SelectedHeroTemplate);
             
 
             GameSession gameSession = new GameSession(player1,player2);

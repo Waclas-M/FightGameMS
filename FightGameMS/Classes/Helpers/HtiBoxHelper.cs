@@ -21,8 +21,8 @@ namespace FightGameMS.Classes.Helpers
             int y = body.Y + body.Height / 2 - 20;
             int x = hero.Facing == Direction.Right
                 ? body.Right
-                : body.Left -70;
-            return new Rectangle(x, y, 70, 40);
+                : body.Left -hero.AttackRange;
+            return new Rectangle(x, y, hero.AttackRange, 40);
         }
     }
 }

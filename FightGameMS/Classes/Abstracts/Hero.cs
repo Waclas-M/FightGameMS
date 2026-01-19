@@ -54,7 +54,7 @@ namespace FightGameMS.Classes.Abstracts
 
         public Image HeroCurrentImage { get; set; }
 
-        public Hero(string name,string className,int maxHealth,int hitBoxWidth,int hitBoxHeight,int attackDamage,int attackRange,int speedMS,string playerMovmentsFolder) { 
+        public Hero(string name,string className,int maxHealth,int hitBoxWidth,int hitBoxHeight,int attackDamage,int attackRange,int speedMS) { 
             
             Name = name;
             ClassName = className;
@@ -64,16 +64,16 @@ namespace FightGameMS.Classes.Abstracts
             AttackDamage = attackDamage;
             AttackRange = attackRange;
             SpeedMs = speedMS;
-            PlayerMovmentsFolder = playerMovmentsFolder;
+            
         }
         
         public void TakeDamage(object? sender, DamagePlayerEvent e)
         {
-            if (e.TargetID == HeroID)
+             if (e.TargetID == HeroID)
             {
                 Hp -= e.Damage;
                 if (Hp.CurrentHealth <= 0) IsAlive = false; 
-                Debug.WriteLine($"\nMoje zdrowie {Hp.CurrentHealth} \n");
+                //Debug.WriteLine($"\nMoje zdrowie {Hp.CurrentHealth} \n");
             }
         }
 
@@ -100,7 +100,7 @@ namespace FightGameMS.Classes.Abstracts
             if (e.AttackerId == HeroID)
             {
                 AttackAnimation.Animate(this, e.DtMs);
-                Debug.WriteLine("Atak odebrany w Hero.Attack");
+                //Debug.WriteLine("Atak odebrany w Hero.Attack");
             }
         }
 

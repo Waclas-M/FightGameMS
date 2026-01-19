@@ -16,9 +16,9 @@ namespace FightGameMS.Forms
         public EndGameWindow(GameSession game)
         {
             InitializeComponent();
-            if (game.Winner == 1) Winner.Text = "Player1";
-            if (game.Winner == 2) Winner.Text = "Player2";
             if (game.Winner == 0) Winner.Text = "Remis";
+            if (game.Winner == 1 || game.Winner == 2) Winner.Text = game.WinnerName;
+            
 
         }
 

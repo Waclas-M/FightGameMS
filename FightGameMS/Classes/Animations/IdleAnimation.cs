@@ -53,15 +53,6 @@ namespace FightGameMS.Classes.Animations
 
         }
 
-        //public List<Image> GetFrames(Direction direction)
-        //{
-        //    return direction == Direction.Right ? IdleRight : IdleLeft;
-        //}
-
-        //public void RestFrames()
-        //{
-        //    IdleElapsedMs = 0;
-        //    IdleFrameIndex = 0;
-        //}
+        
     }
 }

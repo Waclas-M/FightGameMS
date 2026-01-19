@@ -19,7 +19,7 @@ namespace FightGameMS.Classes.Animations
 
         public override void Animate(Hero hero,double dtMS)
         {
-            Debug.WriteLine("Wejście do animacji Atatku " + ElapsedMs);
+            //Debug.WriteLine("Wejście do animacji Atatku " + ElapsedMs);
             ElapsedMs += dtMS;
            
             if (!hero.IsAttacking) return;

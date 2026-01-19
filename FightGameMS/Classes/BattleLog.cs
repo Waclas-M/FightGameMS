@@ -23,6 +23,7 @@ namespace FightGameMS.Classes
             _gamefile = game.Id + ".txt";
             game.DamagePlayer += LogDamage;
             game.AttackPlayer += LogAttack;
+            game.GameEnd += LogEndGame;
 
         }
         public void LogToFile(string message)
@@ -45,6 +46,11 @@ namespace FightGameMS.Classes
             if (e.AttackerID == 1) LogToFile($"[Damage/Hit] Gracz player1 trafił gracza player2 za {e.Damage} Hp.");
             if (e.AttackerID == 2) LogToFile($"[Damage/Hit] Gracz player2 trafił gracza player1 za {e.Damage}.Hp.");
         
+        }
+        private void LogEndGame(object? sender, GameEndEvent e)
+        {
+            if (e.WinnerId == 0) LogToFile("[End Game] Gra zkończyła się remisem!");
+            if (e.WinnerId != 0) LogToFile($"[End Game] Wygrywa gracz {e.Winner}");
         }
     }
 }

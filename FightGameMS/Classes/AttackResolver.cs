@@ -14,17 +14,14 @@ namespace FightGameMS.Classes
         public const int HIT_START_MS = 480;
         public const int HIT_END_MS = 600;
 
-        // Parametry hitboxa ataku
-        private const int ATTACK_BOX_W = 70;
-        private const int ATTACK_BOX_H = 40;
-        private const int ATTACK_RANGE = 55; // dystans "przed" graczem
+       
 
         public bool CheackHit(Hero attacker,Hero target) {
             
             if (!attacker.IsAttacking) return false;
             if (attacker.AttackDamageApplied) return false;
 
-            Debug.WriteLine("W Cheack Hit" + attacker.AttackAnimation.ElapsedMs);
+            //Debug.WriteLine("W Cheack Hit" + attacker.AttackAnimation.ElapsedMs);
             if (attacker.AttackAnimation.ElapsedMs < HIT_START_MS || attacker.AttackAnimation.ElapsedMs > HIT_END_MS) return false;
 
             attacker.AttackDamageApplied = true;

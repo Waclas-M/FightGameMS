@@ -16,7 +16,7 @@ namespace FightGameMS.Classes
         public bool IsAlive { get; set; }
 
         public Warrior(HeroTemplate template) : base(template.Name,template.ClassName,template.MaxHealth,template.HitBoxWidth,template.HitBoxHeight,
-            template.AttackDamage,template.AttackRange,template.SpeedMs,template.PlayerMovmentsFolder)
+            template.AttackDamage,template.AttackRange,template.SpeedMs)
         {
             Template = template;
             IsAlive = true;
