@@ -1,0 +1,22 @@
+[Attack] Gracz player2 wykonał atak.
+[Attack] Gracz player1 wykonał atak.
+[Attack] Gracz player2 wykonał atak.
+[Attack] Gracz player1 wykonał atak.
+[Attack] Gracz player1 wykonał atak.
+[Attack] Gracz player2 wykonał atak.
+[Damage/Hit] Gracz player2 trafił gracza player1 za 45.Hp.
+[Attack] Gracz player1 wykonał atak.
+[Attack] Gracz player2 wykonał atak.
+[Damage/Hit] Gracz player1 trafił gracza player2 za 25 Hp.
+[Damage/Hit] Gracz player2 trafił gracza player1 za 45.Hp.
+[Attack] Gracz player1 wykonał atak.
+[Attack] Gracz player2 wykonał atak.
+[Damage/Hit] Gracz player1 trafił gracza player2 za 25 Hp.
+[Attack] Gracz player1 wykonał atak.
+[Damage/Hit] Gracz player2 trafił gracza player1 za 45.Hp.
+[Damage/Hit] Gracz player1 trafił gracza player2 za 25 Hp.
+[Attack] Gracz player2 wykonał atak.
+[Damage/Hit] Gracz player2 trafił gracza player1 za 45.Hp.
+[Attack] Gracz player1 wykonał atak.
+[Damage/Hit] Gracz player1 trafił gracza player2 za 25 Hp.
+[End Game] Wygrywa gracz Player1

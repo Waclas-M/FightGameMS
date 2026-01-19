@@ -1,0 +1,3 @@
+[Attack] Gracz player2 wykonał atak.
+[Attack] Gracz player2 wykonał atak.
+[Damage/Hit] Gracz player2 trafił gracza player1 za 25.Hp.

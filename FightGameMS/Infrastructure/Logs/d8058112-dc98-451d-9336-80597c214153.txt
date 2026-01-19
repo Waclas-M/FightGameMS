@@ -1,0 +1,2 @@
+[Attack] Gracz player1 wykonał atak.
+[Attack] Gracz player2 wykonał atak.
